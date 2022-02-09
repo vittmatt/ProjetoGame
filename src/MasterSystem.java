@@ -1,4 +1,4 @@
-public class MasterSystem implements Console{
+public class MasterSystem extends ConsoleComDisco implements Console{
 
     @Override
     public void joga() {

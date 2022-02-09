@@ -1,10 +1,16 @@
 public class TestaGame {
 
     public static void main(String[] args) {
-        Nintendo nintendo = new Nintendo();
-        Jogador j1 = new Jogador("vitor", nintendo);
+        PlayStation console = new PlayStation();
+        //console = new PlayStation();
+        Jogador j1 = new Jogador("vitor", console);
         j1.console.desligar();
+        console.insereDisco();
+        console.ejetaDisco();
+        console.insereDisco();
+        console.getTotalDisco();
         j1.jogar();
+        console.insereDisco();
     }
 
 }
