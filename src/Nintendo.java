@@ -10,6 +10,9 @@ public class Nintendo extends ConsoleComJogoBaixavel implements Console{
         super.desinstalarJogo();
     }
 
+    public void dizAdeus() {
+        System.out.println("Adeus");
+    }
     public void dizOi() {
         System.out.println("oi");
     }
