@@ -1,16 +1,18 @@
 public class Xbox extends ConsoleComDisco implements Console{
 
+    @Override
     public void insereDisco() {
         super.insereDisco();
     }
 
+    @Override
     public void ejetaDisco() {
         super.ejetaDisco();
     }
 
     @Override
     public void joga() {
-        if(!ligado) {
+        if(!super.ligado) {
             System.out.println("O console precisa estar ligado.");
             return;
         }
@@ -23,7 +25,7 @@ public class Xbox extends ConsoleComDisco implements Console{
 
     @Override
     public void trocaDeJogo() {
-        if(ligado) {
+        if(super.ligado) {
             System.out.println("Você precisa desligar o console para trocar de jogo!");
             return;
         }
@@ -36,7 +38,7 @@ public class Xbox extends ConsoleComDisco implements Console{
 
     @Override
     public void desligar() {
-        if(ligado) {
+        if(!super.ligado) {
             System.out.println("Ligando o console");
             return;
         }
@@ -45,7 +47,7 @@ public class Xbox extends ConsoleComDisco implements Console{
 
     @Override
     public void ligar() {
-        if(!ligado) {
+        if(super.ligado) {
             System.out.println("Desligando o console");
             return;
         }
