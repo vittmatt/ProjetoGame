@@ -1,20 +1,18 @@
 public class PlayStation extends ConsoleComDisco implements Console{
 
+    @Override
     public void insereDisco() {
         super.insereDisco();
     }
 
+    @Override
     public void ejetaDisco() {
         super.ejetaDisco();
     }
 
     @Override
     public void joga() {
-        if(!ligado) {
-            System.out.println("O console precisa estar ligado.");
-            return;
-        }
-        if(ligado) {
+        if(!super.ligado) {
             System.out.println("Você precisa ligar o console para jogar!");
             return;
         }
@@ -28,7 +26,7 @@ public class PlayStation extends ConsoleComDisco implements Console{
 
     @Override
     public void trocaDeJogo() {
-        if(ligado) {
+        if(super.ligado) {
             System.out.println("Você precisa desligar o console para trocar de jogo!");
             return;
         }
@@ -41,7 +39,7 @@ public class PlayStation extends ConsoleComDisco implements Console{
 
     @Override
     public void desligar() {
-        if(ligado) {
+        if(super.ligado) {
             System.out.println("Desligando o console");
             return;
         }
@@ -50,7 +48,7 @@ public class PlayStation extends ConsoleComDisco implements Console{
 
     @Override
     public void ligar() {
-        if(ligado) {
+        if(super.ligado) {
             System.out.println("Desligando o console");
             return;
         }
