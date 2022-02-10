@@ -1,6 +1,7 @@
 public class ConsoleComDisco {
     private boolean temDisco;
-    private static int totalDiscoInserido;
+    private int totalDiscosInserido;
+    protected boolean ligado;
 
     public void insereDisco() {
         if (temDisco) {
@@ -8,7 +9,7 @@ public class ConsoleComDisco {
             return;
         }
         temDisco = true;
-        totalDiscoInserido++;
+        totalDiscosInserido++;
         System.out.println("Disco inserido.");
     }
 
@@ -21,8 +22,8 @@ public class ConsoleComDisco {
         return temDisco;
     }
 
-    public static int getTotalDiscoInserido() {
-        return totalDiscoInserido;
+    public int getTotalDiscosInserido() {
+        return totalDiscosInserido;
     }
 
 }

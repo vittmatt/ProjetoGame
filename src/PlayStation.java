@@ -1,9 +1,5 @@
 public class PlayStation extends ConsoleComDisco implements Console{
 
-    public void getTotalDisco() {
-        System.out.println(super.getTotalDiscoInserido());
-    }
-
     public void insereDisco() {
         super.insereDisco();
     }
@@ -14,7 +10,15 @@ public class PlayStation extends ConsoleComDisco implements Console{
 
     @Override
     public void joga() {
-        if(super.getTemDisco() && super.getTotalDiscoInserido() < 250) {
+        if(!ligado) {
+            System.out.println("O console precisa estar ligado.");
+            return;
+        }
+        if(ligado) {
+            System.out.println("Você precisa ligar o console para jogar!");
+            return;
+        }
+        if(super.getTemDisco() && super.getTotalDiscosInserido() < 350) {
             System.out.println("Você está jogando um jogo no PlayStation");
 
             return;
@@ -24,20 +28,32 @@ public class PlayStation extends ConsoleComDisco implements Console{
 
     @Override
     public void trocaDeJogo() {
-        if(!super.getTemDisco()) {
-            System.out.println("Você precisa inserir um jogo primeiro para poder trocar de jogo!");
+        if(ligado) {
+            System.out.println("Você precisa desligar o console para trocar de jogo!");
             return;
         }
-        System.out.println("Você está trocando de jogo no PlayStation");
+        if(super.getTemDisco()) {
+            System.out.println("Você está trocando de jogo no PlayStation");
+            return;
+        }
+        System.out.println("Você precisa inserir um jogo primeiro para poder trocar de jogo!");
     }
 
     @Override
     public void desligar() {
-        System.out.println("Desligando o PlayStation");
+        if(ligado) {
+            System.out.println("Desligando o console");
+            return;
+        }
+        System.out.println("Ligando o PlayStation");
     }
 
     @Override
     public void ligar() {
+        if(ligado) {
+            System.out.println("Desligando o console");
+            return;
+        }
         System.out.println("Ligando o PlayStation");
     }
 
