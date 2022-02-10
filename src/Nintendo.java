@@ -1,5 +1,10 @@
 public class Nintendo implements Console{
 
+    public void dizOi() {
+        System.out.println("oi");
+    }
+
+
     @Override
     public void joga() {
         System.out.println("Você está jogando um jogo no Nintendo");
