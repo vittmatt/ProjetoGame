@@ -4,17 +4,18 @@ public class TestaGame {
         /*
         Não consegui fazer funcionar desse jeito
                 !⇩⇩⇩⇩⇩⇩⇩⇩⇩!
-        console = new PlayStation();
+        Console console = new PlayStation();
          */
 
-        Nintendo console = new Nintendo();
+        Console console = new Nintendo();
+        Nintendo console2 = (Nintendo) console;
         Jogador j1 = new Jogador("vitor", console);
         console.ligar();
-        console.baixarJogo();
-        console.baixarJogo();
-        console.trocaDeJogo();
-        console.desligar();
-        console.desligar();
+        console2.baixarJogo();
+        console2.baixarJogo();
+        console2.trocaDeJogo();
+        console2.desligar();
+        console2.desligar();
     }
 
 }
