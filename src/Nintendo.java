@@ -1,5 +1,8 @@
 public class Nintendo implements Console{
 
+    public void dizAdeus() {
+        System.out.println("Adeus");
+    }
     public void dizOi() {
         System.out.println("oi");
     }
