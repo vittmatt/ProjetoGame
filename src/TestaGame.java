@@ -1,21 +1,20 @@
 public class TestaGame {
 
     public static void main(String[] args) {
-        /*
-        Não consegui fazer funcionar desse jeito
-                !⇩⇩⇩⇩⇩⇩⇩⇩⇩!
         Console console = new PlayStation();
-         */
-
-        Console console = new Nintendo();
-        Nintendo console2 = (Nintendo) console;
         Jogador j1 = new Jogador("vitor", console);
-        console.ligar();
-        console2.baixarJogo();
-        console2.baixarJogo();
-        console2.trocaDeJogo();
-        console2.desligar();
-        console2.desligar();
+        PlayStation console2 = (PlayStation) console;
+        j1.jogar();
+
+        Console console3 = new Nintendo();
+        Nintendo console4 = (Nintendo) console;
+        Jogador j2 = new Jogador("vitor", console);
+        console4.ligar();
+        console4.baixarJogo();
+        console4.baixarJogo();
+        console4.trocaDeJogo();
+        console4.desligar();
+        console4.desligar();
     }
 
 }
