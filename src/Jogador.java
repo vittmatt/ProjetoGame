@@ -9,6 +9,7 @@ public class Jogador {
 
     public void jogar() {
         console.joga();
+        //if(console == null)
     }
 
 }

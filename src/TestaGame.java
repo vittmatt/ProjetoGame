@@ -7,7 +7,7 @@ public class TestaGame {
         j1.jogar();
 
         Console console3 = new Nintendo();
-        Nintendo console4 = (Nintendo) console;
+        Nintendo console4 = (Nintendo) console3;
         Jogador j2 = new Jogador("vitor", console);
         console4.ligar();
         console4.baixarJogo();

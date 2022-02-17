@@ -2,7 +2,7 @@ public class ConsoleComFita {
 
     private boolean temFita;
     private int totalFitasInserida;
-    protected boolean ligado;
+    //protected Enum ligado;
 
     public void insereFita() {
         if (temFita) {
