@@ -2,7 +2,9 @@ public class ConsoleComFita {
 
     private boolean temFita;
     private int totalFitasInserida;
-    //protected Enum ligado;
+    protected OnOff state;
+    protected OnOff on = OnOff.ON;
+    protected OnOff off = OnOff.OFF;
 
     public void insereFita() {
         if (temFita) {
