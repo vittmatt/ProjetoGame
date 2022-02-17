@@ -1,7 +1,9 @@
 public class ConsoleComDisco {
     private boolean temDisco;
     private int totalDiscosInserido;
-    protected boolean ligado;
+    protected OnOff state;
+    protected OnOff on = OnOff.ON;
+    protected OnOff off = OnOff.OFF;
 
     public void insereDisco() {
         if (temDisco) {
