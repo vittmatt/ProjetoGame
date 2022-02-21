@@ -1,9 +1,7 @@
 public class ConsoleComJogoBaixavel {
 
     private int quantidadeJogosBaixado;
-    protected OnOff state;
-    protected OnOff on = OnOff.ON;
-    protected OnOff off = OnOff.OFF;
+    private OnOff state;
 
     public boolean jogoBaixado() {
         if(quantidadeJogosBaixado > 0) {
@@ -13,7 +11,7 @@ public class ConsoleComJogoBaixavel {
     }
 
     public void baixarJogo() {
-        if(state == off) {
+        if(this.state.equals(OnOff.OFF)) {
             System.out.println("Você precisa ligar o console para baixar algum jogo");
             return;
         }
@@ -25,7 +23,7 @@ public class ConsoleComJogoBaixavel {
         if(isJogoBaixado()) {
             System.out.println("Não existe jogo para desinstalar!");
         }
-        if(state == off) {
+        if(this.state.equals(OnOff.OFF)) {
             System.out.println("Você precisa ligar o console para desinstalar algum jogo");
             return;
         }
@@ -41,4 +39,11 @@ public class ConsoleComJogoBaixavel {
         return quantidadeJogosBaixado;
     }
 
+    public OnOff getState() {
+        return state;
+    }
+
+    public void setState(OnOff state) {
+        this.state = state;
+    }
 }
