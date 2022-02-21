@@ -3,9 +3,9 @@ public interface Console {
     // Adicionado Enums //
     // Adicionado exeptions para todos esses métodos//
 
-    void joga(boolean confirmacao) throws ConfirmacaoInvalida;
-    void trocaDeJogo(String jogo) throws TrocaJogoInvalida;
-    void desligar() throws ImpossivelDesligar;
-    void ligar() throws ImpossivelLigar;
+    void joga(boolean confirmacao) throws ConfirmacaoInvalidaException;
+    void trocaDeJogo(String jogo) throws TrocaJogoInvalidaException;
+    void desligar() throws ImpossivelDesligarException;
+    void ligar() throws ImpossivelLigarException;
 
 }
