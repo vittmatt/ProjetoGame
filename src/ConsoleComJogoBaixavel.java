@@ -55,14 +55,15 @@ public class ConsoleComJogoBaixavel {
     }
 
     public void buscarJogo(String jogo) {
+        if (!this.jogos.contains(jogo)) {
+            System.out.println("Jogo não encotrado");
+            return;
+        }
         this.jogos.forEach(item -> {
             if (Objects.equals(jogo, item)) {
                 System.out.println("Jogo Encontrado: " + item);
             }
         });
-        if (!this.jogos.contains(jogo)) {
-            System.out.println("Jogo não encotrado");
-        }
     }
 
     public void arrayOrdemAlfabetica() {
