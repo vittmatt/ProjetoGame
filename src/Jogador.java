@@ -14,4 +14,8 @@ public class Jogador {
         console.joga(confirmacao);
     }
 
+    @Override
+    public String toString() {
+        return "Nome do jogador é " + nome + ", e o console do jogador é " + console;
+    }
 }
