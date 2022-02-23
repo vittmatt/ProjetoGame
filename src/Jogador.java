@@ -8,6 +8,9 @@ public class Jogador {
         }
         this.nome = nome;
         this.console = console;
+        if(console == null) {
+            throw new JogadorSemConsole("Console não pode ser null");
+        }
     }
 
     public void jogar(boolean confirmacao) {

@@ -1,5 +1,4 @@
 public interface Console {
-
 //    Refatorar:
 //        ConsoleComDisco
 //        ConsoleComFita
@@ -11,5 +10,4 @@ public interface Console {
     void abrirJogo(String jogo) throws TrocaJogoInvalidaException;
     void desligar() throws ImpossivelDesligarException;
     void ligar() throws ImpossivelLigarException;
-
 }
