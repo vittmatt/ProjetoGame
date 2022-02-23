@@ -14,6 +14,7 @@ public class TestaGame {
             j1.jogar(true);
             console2.desinstalarJogo("Alice's Wonderland");
             j1.jogar(true);
+            console2.buscarJogo("Dark Souls");
 
         } catch (Exception e) {
             String msg = e.getMessage();
