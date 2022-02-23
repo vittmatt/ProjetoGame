@@ -1,68 +1,89 @@
 public class Nintendo extends ConsoleComJogoBaixavel implements Console{
 
+    private String jogoAtual;
+
     @Override
-    public void baixarJogo() {
-        super.baixarJogo();
+    public void baixarJogo(String jogo) {
+        super.baixarJogo(jogo);
     }
 
     @Override
-    public void desinstalarJogo() {
-        super.desinstalarJogo();
+    public void desinstalarJogo(String jogo) {
+        if(jogoAtual == jogo) {
+            System.out.println("Fechando " + jogoAtual);
+            jogoAtual = null;
+        }
+        super.desinstalarJogo(jogo);
     }
 
     @Override
-    public void joga(boolean confirmacao) throws ConfirmacaoInvalida {
-        if (super.state == super.off) {
-            if(confirmacao != true && confirmacao != false) {
-                throw new ConfirmacaoInvalida("Método joga só aceita boolean");
-            }
-            if(confirmacao == false) {
-                System.out.println("cancelando jogar");
-            }
+    public void joga(boolean confirmacao) {
+        if(!confirmacao) {
+            System.out.println("cancelando jogar");
+            return;
+        }
+        if (this.getState().equals(OnOff.OFF)) {
             System.out.println("Você precisa ligar o Nintendo para jogar!");
             return;
         }
-        if (super.isJogoBaixado()) {
-            System.out.println("Você está jogando um jogo no Nintendo");
+        if (this.getQuantidadeJogosBaixado() == 0) {
+            System.out.println("Você precisa baixar algum jogo para jogar");
             return;
         }
-        System.out.println("Você precisa baixar ao menos um jogo para poder jogar!");
+
+        if(jogoAtual == null) {
+            System.out.println("Você precisa abrir algum jogo primeiro para poder jogar!");
+            return;
+        }
+
+        System.out.println("Jogando " + jogoAtual);
     }
 
     @Override
-    public void trocaDeJogo(String jogo) throws TrocaJogoInvalida {
+    public void abrirJogo(String jogo) throws TrocaJogoInvalidaException {
+        if(this.getState().equals(OnOff.OFF)) {
+            System.out.println("Nintendo está desligado");
+            return;
+        }
+
         if(jogo == null) {
-            throw new TrocaJogoInvalida("Troca de jogo Inválida");
+            throw new TrocaJogoInvalidaException("Você precisa especificar o jogo a ser aberto");
         }
-        if(super.state == super.off) {
-            System.out.println("O nintendo precisa estar ligado para trocar de jogo");
+
+        if(!this.getJogos().contains(jogo)) {
+            System.out.println("Você não tem esse jogo baixado");
+        }
+
+        if(jogoAtual != null) {
+            System.out.println("Você está trocando de " + jogoAtual + " Para " + jogo);
+            jogoAtual = jogo;
             return;
         }
-        if(super.isJogoBaixado() && super.getQuantidadeJogosBaixado() >= 2) {
-            System.out.println("Você está trocando de jogo no Nintendo");
+
+        if (jogoAtual == null) {
+            System.out.println("Você está abrindo " + jogo);
+            jogoAtual = jogo;
             return;
         }
-        System.out.println("Você precisa baixar ao menos 2 jogos para poder trocar de jogo!");
 
     }
 
     @Override
-    public void desligar() throws ImpossivelDesligar {
-        if(super.state == super.off) {
-            throw new ImpossivelDesligar("Console já desligado");
+    public void desligar() throws ImpossivelDesligarException {
+        if(this.getState().equals(OnOff.OFF)) {
+            throw new ImpossivelDesligarException("Console já desligado");
         }
-        System.out.println("Desligando o Nintendo");
-        super.state = super.off;
+        System.out.println("Nintendo desligado");
+        this.setState(OnOff.OFF);
     }
 
     @Override
-    public void ligar() throws ImpossivelLigar {
-        if(super.state == super.on) {
-            throw new ImpossivelLigar("Console já ligado");
+    public void ligar() throws ImpossivelLigarException {
+        if(this.getState().equals(OnOff.ON)) {
+            throw new ImpossivelLigarException("Console já ligado");
         }
-        super.state = super.on;
-        System.out.println("Ligando o Nintendo");
-
+        this.setState(OnOff.ON);
+        System.out.println("Nintendo ligado");
 
     }
 

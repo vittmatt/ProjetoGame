@@ -11,18 +11,15 @@ public class Xbox extends ConsoleComDisco implements Console{
     }
 
     @Override
-    public void joga(boolean confirmacao) throws ConfirmacaoInvalida {
-        if(confirmacao != true && confirmacao != false) {
-            throw new ConfirmacaoInvalida("Método joga só aceita boolean");
-        }
-        if(confirmacao == false) {
+    public void joga(boolean confirmacao){
+        if(!confirmacao) {
             System.out.println("cancelando jogar");
         }
-        if(super.state == super.off) {
+        if(this.getState().equals(OnOff.OFF)) {
             System.out.println("O console precisa estar ligado.");
             return;
         }
-        if(super.getTemDisco() && super.getTotalDiscosInserido() < 2 && confirmacao) {
+        if(this.getTemDisco() && this.getTotalDiscosInserido() < 2 && confirmacao) {
             System.out.println("Você está jogando um jogo no Xbox");
             return;
         }
@@ -30,15 +27,15 @@ public class Xbox extends ConsoleComDisco implements Console{
     }
 
     @Override
-    public void trocaDeJogo(String jogo) throws TrocaJogoInvalida {
+    public void abrirJogo(String jogo) throws TrocaJogoInvalidaException {
         if(jogo == null) {
-            throw new TrocaJogoInvalida("Troca de jogo Inválida");
+            throw new TrocaJogoInvalidaException("Troca de jogo Inválida");
         }
-        if(super.state == super.on) {
+        if(this.getState().equals(OnOff.ON)) {
             System.out.println("Você precisa desligar o console para trocar de jogo!");
             return;
         }
-        if(super.getTemDisco()) {
+        if(this.getTemDisco()) {
             System.out.println("Você está trocando de jogo no Xbox");
             return;
         }
@@ -46,20 +43,20 @@ public class Xbox extends ConsoleComDisco implements Console{
     }
 
     @Override
-    public void desligar() throws ImpossivelDesligar {
-        if(super.state == super.off) {
-            throw new ImpossivelDesligar("Console já desligado");
+    public void desligar() throws ImpossivelDesligarException {
+        if(this.getState().equals(OnOff.OFF)) {
+            throw new ImpossivelDesligarException("Console já desligado");
         }
         System.out.println("Desligando o Xbox");
-        super.state = super.off;
+        this.setState(OnOff.OFF);
     }
 
     @Override
-    public void ligar() throws ImpossivelLigar {
-        if(super.state == super.on) {
-            throw new ImpossivelLigar("Console já ligado");
+    public void ligar() throws ImpossivelLigarException {
+        if(this.getState().equals(OnOff.ON)) {
+            throw new ImpossivelLigarException("Console já ligado");
         }
-        super.state = super.on;
+        this.setState(OnOff.ON);
         System.out.println("Ligando o Xbox");
     }
 

@@ -11,18 +11,16 @@ public class MasterSystem extends ConsoleComFita implements Console{
     }
 
     @Override
-    public void joga(boolean confirmacao) throws ConfirmacaoInvalida {
-        if(confirmacao != true && confirmacao != false) {
-            throw new ConfirmacaoInvalida("Método joga só aceita boolean");
-        }
-        if(confirmacao == false) {
+    public void joga(boolean confirmacao){
+        if(!confirmacao) {
             System.out.println("cancelando jogar");
+            return;
         }
-        if(super.state == super.off) {
+        if(this.getState().equals(OnOff.OFF)) {
             System.out.println("Você precisa ligar o console para jogar!");
             return;
         }
-        if(super.getTemFita() && super.getTotalFitasInserida() < 750) {
+        if(this.getTemFita() && this.getTotalFitasInserida() < 750) {
             System.out.println("Você está jogando um jogo no MasterSystem");
             return;
         }
@@ -30,15 +28,15 @@ public class MasterSystem extends ConsoleComFita implements Console{
     }
 
     @Override
-    public void trocaDeJogo(String jogo) throws TrocaJogoInvalida {
+    public void abrirJogo(String jogo) throws TrocaJogoInvalidaException {
         if(jogo == null) {
-            throw new TrocaJogoInvalida("Troca de jogo Inválida");
+            throw new TrocaJogoInvalidaException("Troca de jogo Inválida");
         }
-        if(super.state == super.on) {
+        if(this.getState().equals(OnOff.ON)) {
             System.out.println("Você precisa desligar o console para trocar de jogo!");
             return;
         }
-        if(super.getTemFita()) {
+        if(this.getTemFita()) {
             System.out.println("Você está trocando fita no MasterSystem");
             return;
         }
@@ -46,20 +44,21 @@ public class MasterSystem extends ConsoleComFita implements Console{
     }
 
     @Override
-    public void desligar() throws ImpossivelDesligar {
-        if(super.state == super.off) {
-            throw new ImpossivelDesligar("Console já desligado");
+    public void desligar() throws ImpossivelDesligarException {
+        if(this.getState().equals(OnOff.OFF)) {
+            throw new ImpossivelDesligarException("Console já desligado");
         }
-        super.state = super.off;
+        this.setState(OnOff.OFF);
         System.out.println("Desligando o MasterSystem");
+
     }
 
     @Override
-    public void ligar() throws ImpossivelLigar {
-        if(super.state == super.on) {
-            throw new ImpossivelLigar("Console já ligado");
+    public void ligar() throws ImpossivelLigarException {
+        if(this.getState().equals(OnOff.ON)) {
+            throw new ImpossivelLigarException("Console já ligado");
         }
-        super.state = super.on;
+        this.setState(OnOff.ON);
         System.out.println("Ligando o MasterSystem");
     }
 

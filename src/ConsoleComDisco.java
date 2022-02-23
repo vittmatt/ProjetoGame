@@ -1,4 +1,6 @@
-public class ConsoleComDisco {
+import java.util.ArrayList;
+
+public class ConsoleComDisco{
     private boolean temDisco;
     private int totalDiscosInserido;
     protected OnOff state;
