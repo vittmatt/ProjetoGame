@@ -84,7 +84,6 @@ public class Nintendo extends ConsoleComJogoBaixavel implements Console{
         }
         this.setState(OnOff.ON);
         System.out.println("Nintendo ligado");
-
     }
 
 }
