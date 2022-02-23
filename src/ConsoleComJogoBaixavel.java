@@ -2,13 +2,11 @@ import java.util.ArrayList;
 
 public class ConsoleComJogoBaixavel {
 
-
     private OnOff state = OnOff.OFF;
     private ArrayList<String> jogos = new ArrayList<>();
 
     public void baixarJogo(String jogo) {
         if(this.state.equals(OnOff.OFF)) {
-
             System.out.println("Você precisa ligar o console para baixar algum jogo");
             return;
         }
@@ -24,7 +22,6 @@ public class ConsoleComJogoBaixavel {
 
     public void desinstalarJogo(String jogo) {
         if(this.state.equals(OnOff.OFF)) {
-
             System.out.println("Você precisa ligar o console para desinstalar algum jogo");
             return;
         }

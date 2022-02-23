@@ -69,23 +69,21 @@ public class Nintendo extends ConsoleComJogoBaixavel implements Console{
     }
 
     @Override
-    public void desligar() throws ImpossivelDesligar {
-        if(super.state == super.off) {
-            throw new ImpossivelDesligar("Console já desligado");
+    public void desligar() throws ImpossivelDesligarException {
+        if(this.getState().equals(OnOff.OFF)) {
+            throw new ImpossivelDesligarException("Console já desligado");
         }
         System.out.println("Nintendo desligado");
         this.setState(OnOff.OFF);
     }
 
     @Override
-    public void ligar() throws ImpossivelLigar {
-        if(super.state == super.on) {
-            throw new ImpossivelLigar("Console já ligado");
+    public void ligar() throws ImpossivelLigarException {
+        if(this.getState().equals(OnOff.ON)) {
+            throw new ImpossivelLigarException("Console já ligado");
         }
         this.setState(OnOff.ON);
         System.out.println("Nintendo ligado");
-
-
     }
 
 }

@@ -16,7 +16,6 @@ public class TestaGame {
             j1.jogar(true);
 
         } catch (Exception e) {
-
             String msg = e.getMessage();
             System.out.println(msg);
         }
