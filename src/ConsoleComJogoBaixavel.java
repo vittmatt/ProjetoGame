@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ConsoleComJogoBaixavel {
 
@@ -6,11 +9,11 @@ public class ConsoleComJogoBaixavel {
     private ArrayList<String> jogos = new ArrayList<>();
 
     public void baixarJogo(String jogo) {
-        if(this.state.equals(OnOff.OFF)) {
+        if (this.state.equals(OnOff.OFF)) {
             System.out.println("Você precisa ligar o console para baixar algum jogo");
             return;
         }
-        if(jogos.contains(jogo)) {
+        if (jogos.contains(jogo)) {
             System.out.println("Jogo já baixado");
             return;
         }
@@ -21,17 +24,17 @@ public class ConsoleComJogoBaixavel {
     }
 
     public void desinstalarJogo(String jogo) {
-        if(this.state.equals(OnOff.OFF)) {
+        if (this.state.equals(OnOff.OFF)) {
             System.out.println("Você precisa ligar o console para desinstalar algum jogo");
             return;
         }
 
-        if(jogos.size() == 0) {
+        if (jogos.size() == 0) {
             System.out.println("Não existe jogo para desinstalar!");
         }
 
-        for(int i = 0; i < this.jogos.size(); i++) {
-            if(this.jogos.get(i).equals(jogo)) {
+        for (int i = 0; i < this.jogos.size(); i++) {
+            if (this.jogos.get(i).equals(jogo)) {
                 this.jogos.remove(i);
                 System.out.println("Desinstalando " + jogo);
                 return;
@@ -41,8 +44,8 @@ public class ConsoleComJogoBaixavel {
     }
 
     public void atualizarJogo(String jogoAntigo, String novoJogo) {
-        for(int i = 0; i < this.jogos.size(); i++) {
-            if(this.jogos.get(i).equals(jogoAntigo)) {
+        for (int i = 0; i < this.jogos.size(); i++) {
+            if (this.jogos.get(i).equals(jogoAntigo)) {
                 this.jogos.set(i, novoJogo);
                 System.out.println(jogoAntigo + "atualizado para" + novoJogo);
                 arrayOrdemAlfabetica();
@@ -51,13 +54,15 @@ public class ConsoleComJogoBaixavel {
         System.out.println("Jogo não encontrado");
     }
 
-    public String buscarJogo(String jogo) {
-        for (String s : this.jogos) {
-            if (s.equals(jogo)) {
-                return s;
+    public void buscarJogo(String jogo) {
+        this.jogos.forEach(item -> {
+            if (Objects.equals(jogo, item)) {
+                System.out.println("Jogo Encontrado: " + item);
             }
+        });
+        if (!this.jogos.contains(jogo)) {
+            System.out.println("Jogo não encotrado");
         }
-        return "Jogo não encontrado";
     }
 
     public void arrayOrdemAlfabetica() {
