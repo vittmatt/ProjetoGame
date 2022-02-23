@@ -4,7 +4,9 @@ public class ConsoleComFita {
 
     private boolean temFita;
     private int totalFitasInserida;
-    private OnOff state;
+    protected OnOff state;
+    protected OnOff on = OnOff.ON;
+    protected OnOff off = OnOff.OFF;
 
     public void insereFita() {
         if (temFita) {
@@ -29,11 +31,4 @@ public class ConsoleComFita {
         return totalFitasInserida;
     }
 
-    public OnOff getState() {
-        return state;
-    }
-
-    public void setState(OnOff state) {
-        this.state = state;
-    }
 }

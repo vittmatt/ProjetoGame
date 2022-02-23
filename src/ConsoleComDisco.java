@@ -3,7 +3,9 @@ import java.util.ArrayList;
 public class ConsoleComDisco{
     private boolean temDisco;
     private int totalDiscosInserido;
-    private OnOff state;
+    protected OnOff state;
+    protected OnOff on = OnOff.ON;
+    protected OnOff off = OnOff.OFF;
 
     public void insereDisco() {
         if (temDisco) {
@@ -28,11 +30,4 @@ public class ConsoleComDisco{
         return totalDiscosInserido;
     }
 
-    public OnOff getState() {
-        return state;
-    }
-
-    public void setState(OnOff state) {
-        this.state = state;
-    }
 }
