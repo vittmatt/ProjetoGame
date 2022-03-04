@@ -1,15 +1,12 @@
 package br.com.projetoGame.interfaces;
 
 import br.com.projetoGame.classes.Jogo;
-import br.com.projetoGame.exceptions.ImpossivelDesligarException;
-import br.com.projetoGame.exceptions.ImpossivelLigarException;
-import br.com.projetoGame.exceptions.JogoInvalidException;
-import br.com.projetoGame.exceptions.TrocaJogoInvalidaException;
+import br.com.projetoGame.exceptions.*;
 
 public interface Console {
-    void joga();
+    void joga() throws ConsoleInvalidException;
 
-    void abrirJogo(String jogo) throws TrocaJogoInvalidaException;
+    void abrirJogo(String jogo) throws TrocaJogoInvalidaException, ConsoleInvalidException;
 
     void desligar() throws ImpossivelDesligarException;
 
