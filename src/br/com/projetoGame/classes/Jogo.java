@@ -14,23 +14,23 @@ public class Jogo {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public String getGenero() {
-        return genero;
+        return this.genero;
     }
 
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
 
     @Override
     public String toString() {
         return "Jogo{" +
-                "nome: " + nome +
-                ", descricao: " + descricao +
-                ", genero: " + genero +
+                "nome: " + this.nome +
+                ", descricao: " + this.descricao +
+                ", genero: " + this.genero +
                 '}';
     }
 
@@ -39,11 +39,11 @@ public class Jogo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Jogo jogo = (Jogo) o;
-        return Objects.equals(nome, jogo.nome) && Objects.equals(descricao, jogo.descricao) && Objects.equals(genero, jogo.genero);
+        return Objects.equals(this.nome, jogo.nome) && Objects.equals(this.descricao, jogo.descricao) && Objects.equals(this.genero, jogo.genero);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, descricao, genero);
+        return Objects.hash(this.nome, this.descricao, this.genero);
     }
 }
