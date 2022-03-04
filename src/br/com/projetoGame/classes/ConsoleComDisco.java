@@ -1,6 +1,8 @@
-import java.util.ArrayList;
+package br.com.projetoGame.classes;
 
-public class ConsoleComDisco{
+import br.com.projetoGame.enums.OnOff;
+
+public class ConsoleComDisco {
     private boolean temDisco;
     private int totalDiscosInserido;
     protected OnOff state;

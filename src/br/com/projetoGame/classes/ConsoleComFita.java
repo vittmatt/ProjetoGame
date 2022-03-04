@@ -1,4 +1,6 @@
-import java.util.ArrayList;
+package br.com.projetoGame.classes;
+
+import br.com.projetoGame.enums.OnOff;
 
 public class ConsoleComFita {
 
