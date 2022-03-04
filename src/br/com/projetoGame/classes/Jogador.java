@@ -28,17 +28,17 @@ public class Jogador {
     }
 
     public void jogar() throws JogoInvalidException, ConsoleInvalidException {
-        if(console != null) {
-            console.joga();
+        if(this.console != null) {
+            this.console.joga();
         }
 
-        if(consoleComJogoBaixavel != null) {
-            consoleComJogoBaixavel.joga();
+        if(this.consoleComJogoBaixavel != null) {
+            this.consoleComJogoBaixavel.joga();
         }
     }
 
     @Override
     public String toString() {
-        return "Nome do jogador é " + nome + ", e o console do jogador é " + console;
+        return "Nome do jogador é " + this.nome + ", e o console do jogador é " + this.console;
     }
 }

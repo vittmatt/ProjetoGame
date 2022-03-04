@@ -1,6 +1,7 @@
 package br.com.projetoGame.classes;
 
 import br.com.projetoGame.enums.OnOff;
+import br.com.projetoGame.exceptions.FitaInvalidException;
 
 public class ConsoleComFita {
 
@@ -8,31 +9,30 @@ public class ConsoleComFita {
     private int totalFitasInserida;
     protected OnOff state;
 
-    public void insereFita() {
-        if (temFita) {
-            System.out.println("Já existe uma Fita!");
-            return;
+    public void insereFita() throws FitaInvalidException {
+        if (this.temFita) {
+            throw new FitaInvalidException("Já existe uma Fita!");
         }
-        temFita = true;
-        totalFitasInserida++;
+        this.temFita = true;
+        this.totalFitasInserida++;
         System.out.println("Fita Inserida.");
     }
 
     public void retiraFita() {
-        temFita = false;
+        this.temFita = false;
         System.out.println("Você retirou a fita.");
     }
 
     public boolean getTemFita() {
-        return temFita;
+        return this.temFita;
     }
 
     public int getTotalFitasInserida() {
-        return totalFitasInserida;
+        return this.totalFitasInserida;
     }
 
     public OnOff getState() {
-        return state;
+        return this.state;
     }
 
     public void setState(OnOff state) {
