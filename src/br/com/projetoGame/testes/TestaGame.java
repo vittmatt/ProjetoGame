@@ -1,9 +1,8 @@
 package br.com.projetoGame.testes;
 
-import br.com.projetoGame.classes.Jogador;
-import br.com.projetoGame.classes.Jogo;
-import br.com.projetoGame.classes.Nintendo;
-import br.com.projetoGame.interfaces.Console;
+import br.com.projetoGame.models.Jogador;
+import br.com.projetoGame.models.Jogo;
+import br.com.projetoGame.models.Nintendo;
 import br.com.projetoGame.interfaces.ConsoleComJogoBaixavel;
 
 public class TestaGame {
@@ -22,9 +21,8 @@ public class TestaGame {
             console2.abrirJogo("Alice's Wonderland");
             j1.jogar();
             console2.desinstalarJogo("Alice's Wonderland");
-            j1.jogar();
             System.out.println(console2.getJogos());
-            System.out.println(console2.buscarJogo("Dark souls"));
+            System.out.println(console2.buscarJogo("Resident Evil"));
 
         } catch (Exception e) {
             String msg = e.getMessage();

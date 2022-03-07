@@ -1,4 +1,4 @@
-package br.com.projetoGame.classes;
+package br.com.projetoGame.models;
 
 import br.com.projetoGame.exceptions.ConsoleInvalidException;
 import br.com.projetoGame.exceptions.JogadorSemConsoleException;
