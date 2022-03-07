@@ -1,6 +1,7 @@
-package br.com.projetoGame.classes;
+package br.com.projetoGame.models;
 
 import br.com.projetoGame.enums.OnOff;
+import br.com.projetoGame.exceptions.DiscoInvalidException;
 import br.com.projetoGame.exceptions.ImpossivelDesligarException;
 import br.com.projetoGame.exceptions.ImpossivelLigarException;
 import br.com.projetoGame.exceptions.TrocaJogoInvalidaException;
@@ -9,7 +10,7 @@ import br.com.projetoGame.interfaces.Console;
 public class Xbox extends ConsoleComDisco implements Console {
 
     @Override
-    public void insereDisco() {
+    public void insereDisco() throws DiscoInvalidException {
         super.insereDisco();
     }
 

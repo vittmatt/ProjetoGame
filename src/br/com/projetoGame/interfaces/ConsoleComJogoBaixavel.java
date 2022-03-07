@@ -1,13 +1,10 @@
 package br.com.projetoGame.interfaces;
 
-import br.com.projetoGame.classes.Jogo;
+import br.com.projetoGame.models.Jogo;
 import br.com.projetoGame.exceptions.*;
 
-// TODO: adicionar Exceptions ao invés de return
-// TODO: lançar excpetions
-
 public interface ConsoleComJogoBaixavel {
-    void baixarJogo(Jogo jogo) throws JogoInvalidException, ConsoleInvalidException;
+    void baixarJogo(Jogo jogo) throws Exception;
     Jogo desinstalarJogo(String jogo) throws JogoInvalidException;
     void atualizarJogo(String jogoAntigo, Jogo novoJogo) throws JogoInvalidException;
     Jogo buscarJogo(String jogo) throws JogoInvalidException;

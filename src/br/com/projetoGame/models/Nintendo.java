@@ -1,29 +1,25 @@
-package br.com.projetoGame.classes;
+package br.com.projetoGame.models;
 
-import br.com.projetoGame.comparators.JogoNintendoComparator;
 import br.com.projetoGame.enums.OnOff;
 import br.com.projetoGame.exceptions.*;
 import br.com.projetoGame.interfaces.ConsoleComJogoBaixavel;
 
 import java.util.*;
 public class Nintendo implements ConsoleComJogoBaixavel {
-
     private Jogo jogoAtual;
     private OnOff state = OnOff.OFF;
-    private Set<Jogo> jogos = new TreeSet<Jogo>(new JogoNintendoComparator());
-    private Map<String, Jogo> nomeParaJogo = new HashMap<>();
+    private Map<String, Jogo> jogos = new TreeMap<String, Jogo>();
 
     @Override
-    public void baixarJogo(Jogo jogo) throws JogoInvalidException, ConsoleInvalidException {
+    public void baixarJogo(Jogo jogo) throws Exception{
         if (this.state.equals(OnOff.OFF)) {
             throw new ConsoleInvalidException("Você precisa ligar o console para baixar algum jogo");
         }
-        if (this.jogos.contains(jogo)) {
+        if (this.jogos.containsKey(jogo.getNome())) {
             throw new JogoInvalidException("Jogo já baixado");
         }
 
-        this.jogos.add(jogo);
-        this.nomeParaJogo.put(jogo.getNome(), jogo);
+        this.jogos.put(jogo.getNome(), jogo);
         System.out.println("Baixando " + jogo.getNome());
     }
 
@@ -43,25 +39,25 @@ public class Nintendo implements ConsoleComJogoBaixavel {
             throw new JogoInvalidException("Não existe jogo para desinstalar!");
         }
 
-        if(this.nomeParaJogo.get(jogoParaDesinstalar) == null){
+        if(this.jogos.get(jogoParaDesinstalar) == null){
             throw new JogoInvalidException("Jogo não encontrado");
         }
 
         System.out.println("Desinstalando " + jogoParaDesinstalar);
-        this.jogos.remove(this.nomeParaJogo.get((jogoParaDesinstalar)));
-        return this.nomeParaJogo.get(jogoParaDesinstalar);
+        this.jogos.remove(jogoParaDesinstalar);
+        return this.jogos.get(jogoParaDesinstalar);
     }
 
     @Override
     public void atualizarJogo(String jogoAntigo, Jogo novoJogo) throws JogoInvalidException {
-        if (this.nomeParaJogo.get(jogoAntigo) == null) throw new JogoInvalidException("Jogo não encontrado");
-        this.nomeParaJogo.replace(jogoAntigo, novoJogo);
+        if (this.jogos.get(jogoAntigo) == null) throw new JogoInvalidException("Jogo não encontrado");
+        this.jogos.replace(jogoAntigo, novoJogo);
     }
 
     @Override
     public Jogo buscarJogo(String jogoBuscado) throws JogoInvalidException {
-        if (this.nomeParaJogo.get(jogoBuscado) == null) throw new JogoInvalidException("Jogo não encotrado");
-        return this.nomeParaJogo.get(jogoBuscado);
+        if (this.jogos.get(jogoBuscado) == null) throw new JogoInvalidException("Jogo não encotrado");
+        return this.jogos.get(jogoBuscado);
     }
 
     @Override
@@ -86,24 +82,28 @@ public class Nintendo implements ConsoleComJogoBaixavel {
            throw new ConsoleInvalidException("Nintendo está desligado");
         }
 
-        if (this.nomeParaJogo.get(jogo) == null) {
+        if (this.jogos.get(jogo) == null) {
             throw new TrocaJogoInvalidaException("Você precisa especificar o jogo a ser aberto");
         }
 
-        if (!this.getJogos().contains(this.nomeParaJogo.get(jogo))) {
+        if (this.jogos.get(jogo) == null) {
             throw new JogoInvalidException("Você não tem esse jogo baixado");
         }
 
         if (this.jogoAtual != null) {
             System.out.println("Você está trocando de " + jogoAtual.getNome() + " Para " + jogo);
-            this.jogoAtual = this.nomeParaJogo.get(jogo);
+            this.jogoAtual = this.jogos.get(jogo);
         }
 
         if (this.jogoAtual == null) {
             System.out.println("Você está abrindo " + jogo);
-            this.jogoAtual = this.nomeParaJogo.get(jogo);
+            this.jogoAtual = this.jogos.get(jogo);
         }
 
+    }
+
+    public void fecharJogo() {
+        this.jogoAtual = null;
     }
 
     @Override
@@ -112,7 +112,7 @@ public class Nintendo implements ConsoleComJogoBaixavel {
             throw new ImpossivelDesligarException("Console já desligado");
         }
         System.out.println("Nintendo desligado");
-        this.setState(OnOff.OFF);
+        this.state = OnOff.OFF;
     }
 
     @Override
@@ -120,7 +120,7 @@ public class Nintendo implements ConsoleComJogoBaixavel {
         if (this.getState().equals(OnOff.ON)) {
             throw new ImpossivelLigarException("Console já ligado");
         }
-        this.setState(OnOff.ON);
+        this.state = OnOff.ON;
         System.out.println("Nintendo ligado");
     }
 
@@ -132,12 +132,8 @@ public class Nintendo implements ConsoleComJogoBaixavel {
         return this.state;
     }
 
-    public void setState(OnOff state) {
-        this.state = state;
-    }
-
-    public Set<Jogo> getJogos() {
-        return Collections.unmodifiableSet(this.jogos);
+    public Map<String, Jogo> getJogos() {
+        return Collections.unmodifiableMap(jogos);
     }
 
 }

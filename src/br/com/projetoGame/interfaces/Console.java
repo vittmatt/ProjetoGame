@@ -1,6 +1,5 @@
 package br.com.projetoGame.interfaces;
 
-import br.com.projetoGame.classes.Jogo;
 import br.com.projetoGame.exceptions.*;
 
 public interface Console {
