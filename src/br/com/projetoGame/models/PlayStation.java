@@ -1,31 +1,31 @@
-package br.com.projetoGame.classes;
+package br.com.projetoGame.models;
 
 import br.com.projetoGame.enums.OnOff;
 import br.com.projetoGame.exceptions.*;
 import br.com.projetoGame.interfaces.Console;
 
-public class MasterSystem extends ConsoleComFita implements Console {
+public class PlayStation extends ConsoleComDisco implements Console {
 
     @Override
-    public void insereFita() throws FitaInvalidException {
-        super.insereFita();
+    public void insereDisco() throws DiscoInvalidException {
+        super.insereDisco();
     }
 
     @Override
-    public void retiraFita() {
-        super.retiraFita();
+    public void ejetaDisco() {
+        super.ejetaDisco();
     }
 
     @Override
     public void joga() throws ConsoleInvalidException {
         if (this.getState().equals(OnOff.OFF)) {
-            throw new ConsoleInvalidException("Você precisa ligar o console para jogar!");
+            throw new ConsoleInvalidException("O console precisa estar ligado.");
         }
-        if (this.getTemFita() && this.getTotalFitasInserida() < 750) {
-            System.out.println("Você está jogando um jogo no MasterSystem");
+        if (this.getTemDisco() && this.getTotalDiscosInserido() < 2) {
+            System.out.println("Você está jogando um jogo no Xbox");
             return;
         }
-        throw new ConsoleInvalidException("Parece que o leitor queimou ou não existe uma fita inserida!");
+        throw new ConsoleInvalidException("Parece que o leitor queimou ou não existe um disco!");
     }
 
     @Override
@@ -36,8 +36,8 @@ public class MasterSystem extends ConsoleComFita implements Console {
         if (this.getState().equals(OnOff.ON)) {
             throw new ConsoleInvalidException("Você precisa desligar o console para trocar de jogo!");
         }
-        if (this.getTemFita()) {
-            System.out.println("Você está trocando fita no MasterSystem");
+        if (this.getTemDisco()) {
+            System.out.println("Você está trocando de jogo no PlayStation");
             return;
         }
         throw new ConsoleInvalidException("Você precisa inserir um jogo primeiro para poder trocar de jogo!");
@@ -48,9 +48,8 @@ public class MasterSystem extends ConsoleComFita implements Console {
         if (this.getState().equals(OnOff.OFF)) {
             throw new ImpossivelDesligarException("Console já desligado");
         }
+        System.out.println("Desligando o PlayStation");
         this.setState(OnOff.OFF);
-        System.out.println("Desligando o MasterSystem");
-
     }
 
     @Override
@@ -59,7 +58,7 @@ public class MasterSystem extends ConsoleComFita implements Console {
             throw new ImpossivelLigarException("Console já ligado");
         }
         this.setState(OnOff.ON);
-        System.out.println("Ligando o MasterSystem");
+        System.out.println("Ligando o PlayStation");
     }
 
 }

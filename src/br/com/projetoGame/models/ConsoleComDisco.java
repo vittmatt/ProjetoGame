@@ -1,4 +1,4 @@
-package br.com.projetoGame.classes;
+package br.com.projetoGame.models;
 
 import br.com.projetoGame.enums.OnOff;
 import br.com.projetoGame.exceptions.DiscoInvalidException;
