@@ -5,6 +5,8 @@ import br.com.projetoGame.exceptions.*;
 import br.com.projetoGame.interfaces.ConsoleComJogoBaixavel;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Nintendo implements ConsoleComJogoBaixavel {
     private Optional<Jogo> jogoAtual = Optional.empty();
@@ -22,7 +24,7 @@ public class Nintendo implements ConsoleComJogoBaixavel {
     }
 
     @Override
-    public Optional<Jogo> desinstalarJogo(String jogoParaDesinstalar) throws JogoInvalidException {
+    public void desinstalarJogo(String jogoParaDesinstalar) throws JogoInvalidException {
         if (this.state.equals(OnOff.OFF)) throw new JogoInvalidException("Você precisa ligar o console para desinstalar algum jogo");
 
         if (this.jogos.size() == 0) throw new JogoInvalidException("Não existe jogo para desinstalar!");
@@ -38,7 +40,6 @@ public class Nintendo implements ConsoleComJogoBaixavel {
 
         System.out.println("Desinstalando " + jogoParaDesinstalar);
         this.jogos.remove(jogoParaDesinstalar);
-        return this.jogos.get(jogoParaDesinstalar);
     }
 
     @Override
@@ -49,10 +50,24 @@ public class Nintendo implements ConsoleComJogoBaixavel {
     }
 
     @Override
-    public Optional<Jogo> buscarJogo(String jogoBuscado) throws JogoInvalidException {
+    public Optional<Jogo> buscarJogoPeloNome(String jogoBuscado) throws JogoInvalidException {
         if (!this.jogos.get(jogoBuscado).isPresent()) throw new JogoInvalidException("Jogo não encotrado");
 
         return this.jogos.get(jogoBuscado);
+    }
+
+    public List<Optional<Jogo>> buscarJogoPeloGenero(String genero) {
+        return this.jogos.values().stream()
+                .filter(jogo -> Objects.equals(jogo.get().getGenero(), genero))
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public List<Optional<Jogo>> buscarJogoPeloAnoDeLancamento(int anoDeLancamento) {
+        return this.jogos.values().stream()
+                .filter(jogo -> jogo.get().getDataDeLancamento().getYear() == anoDeLancamento)
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     @Override
