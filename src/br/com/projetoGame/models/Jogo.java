@@ -1,16 +1,22 @@
 package br.com.projetoGame.models;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Jogo {
     private String nome;
     private String descricao;
     private String genero;
+    private LocalDate dataDeLancamento;
 
-    public Jogo(String nome, String genero, String descricao) {
+    public Jogo(String nome, String genero, String descricao, LocalDate dataDeLancamento) {
         this.nome = nome;
         this.genero = genero;
         this.descricao = descricao;
+        this.dataDeLancamento = dataDeLancamento;
     }
 
     public String getNome() {
@@ -25,12 +31,17 @@ public class Jogo {
         return this.descricao;
     }
 
+    public LocalDate getDataDeLancamento() {
+        return dataDeLancamento;
+    }
+
     @Override
     public String toString() {
         return "Jogo{" +
                 "nome: " + this.nome +
                 ", descricao: " + this.descricao +
                 ", genero: " + this.genero +
+                ", Data de Lançamento: " + this.dataDeLancamento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
                 '}';
     }
 
