@@ -11,9 +11,9 @@ public interface ConsoleComJogoBaixavel {
     void baixarJogo(Jogo jogo) throws Exception;
     void desinstalarJogo(String jogo) throws JogoInvalidException;
     void atualizarJogo(String jogoAntigo, Jogo novoJogo) throws JogoInvalidException;
-    Optional<Jogo> buscarJogoPeloNome(String jogo) throws JogoInvalidException;
-    List<Optional<Jogo>> buscarJogoPeloGenero(String genero) throws JogoInvalidException;
-    List<Optional<Jogo>> buscarJogoPeloAnoDeLancamento(int anoDeLancamento) throws JogoInvalidException;
+    Jogo buscarJogoPeloNome(String jogo) throws JogoInvalidException;
+    Jogo buscarJogoPeloGenero(String genero) throws JogoInvalidException;
+    Jogo buscarJogoPeloAnoDeLancamento(int anoDeLancamento) throws JogoInvalidException;
     void joga() throws JogoInvalidException, ConsoleInvalidException;
     void abrirJogo(String jogo) throws TrocaJogoInvalidaException, JogoInvalidException, ConsoleInvalidException;
     void desligar() throws ImpossivelDesligarException;

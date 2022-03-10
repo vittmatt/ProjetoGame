@@ -50,24 +50,28 @@ public class Nintendo implements ConsoleComJogoBaixavel {
     }
 
     @Override
-    public Optional<Jogo> buscarJogoPeloNome(String jogoBuscado) throws JogoInvalidException {
+    public Jogo buscarJogoPeloNome(String jogoBuscado) throws JogoInvalidException {
         if (!this.jogos.get(jogoBuscado).isPresent()) throw new JogoInvalidException("Jogo não encotrado");
 
-        return this.jogos.get(jogoBuscado);
+        return this.jogos.get(jogoBuscado).get();
     }
 
-    public List<Optional<Jogo>> buscarJogoPeloGenero(String genero) {
+    public Jogo buscarJogoPeloGenero(String genero) {
         return this.jogos.values().stream()
                 .filter(jogo -> Objects.equals(jogo.get().getGenero(), genero))
                 .distinct()
-                .collect(Collectors.toList());
+                .map(Optional::get)
+                .collect(Collectors.toList())
+                .get(0);
     }
 
-    public List<Optional<Jogo>> buscarJogoPeloAnoDeLancamento(int anoDeLancamento) {
+    public Jogo buscarJogoPeloAnoDeLancamento(int anoDeLancamento) {
         return this.jogos.values().stream()
                 .filter(jogo -> jogo.get().getDataDeLancamento().getYear() == anoDeLancamento)
                 .distinct()
-                .collect(Collectors.toList());
+                .map(Optional::get)
+                .collect(Collectors.toList())
+                .get(0);
     }
 
     @Override
@@ -127,8 +131,12 @@ public class Nintendo implements ConsoleComJogoBaixavel {
         return this.state;
     }
 
-    public Map<String, Optional<Jogo>> getJogos() {
-        return Collections.unmodifiableMap(jogos);
+    public Object getJogos() {
+        return List.of(
+                jogos.values().stream()
+                        .map(Optional::get)
+                        .collect(Collectors.toList())
+        ).get(0);
     }
 
 }
