@@ -3,10 +3,6 @@ package br.com.projetoGame.interfaces;
 import br.com.projetoGame.models.Jogo;
 import br.com.projetoGame.exceptions.*;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
-
 public interface ConsoleComJogoBaixavel {
     void baixarJogo(Jogo jogo) throws Exception;
     void desinstalarJogo(String jogo) throws JogoInvalidException;
