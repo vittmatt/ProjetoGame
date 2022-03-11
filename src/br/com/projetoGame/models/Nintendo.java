@@ -6,7 +6,6 @@ import br.com.projetoGame.interfaces.ConsoleComJogoBaixavel;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Nintendo implements ConsoleComJogoBaixavel {
     private Optional<Jogo> jogoAtual = Optional.empty();
@@ -135,7 +134,7 @@ public class Nintendo implements ConsoleComJogoBaixavel {
         return List.of(
                 jogos.values().stream()
                         .map(Optional::get)
-                        .collect(Collectors.toList())
+                        .collect(Collectors.groupingBy(jogo -> jogo.getDataDeLancamento().getYear()))
         ).get(0);
     }
 
