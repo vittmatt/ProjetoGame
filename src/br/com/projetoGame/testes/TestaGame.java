@@ -3,17 +3,14 @@ package br.com.projetoGame.testes;
 import br.com.projetoGame.models.Jogador;
 import br.com.projetoGame.models.Jogo;
 import br.com.projetoGame.models.Nintendo;
-import br.com.projetoGame.interfaces.ConsoleComJogoBaixavel;
 
 import java.time.LocalDate;
-import java.time.Month;
 
 public class TestaGame {
 
     public static void main(String[] args) {
         try {
-            ConsoleComJogoBaixavel console = new Nintendo();
-            Nintendo console2 = (Nintendo) console;
+            var console2 = new Nintendo();
             Jogador j1 = new Jogador("Vitor", console2);
             console2.ligar();
             Jogo jogo1 = new Jogo("Dark souls", "Ação","Um jogo extremamente dificil", LocalDate.of(2015, 2, 20));
